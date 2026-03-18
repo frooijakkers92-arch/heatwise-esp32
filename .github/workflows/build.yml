@@ -11,7 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: platformio/action@v2
+      - uses: - name: Install PlatformIO
+  run: pip install platformio
 
       - run: |
           cd firmware/esp32-v4
