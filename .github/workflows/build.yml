@@ -2,7 +2,7 @@ name: Build ESP32 Firmware
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -11,14 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: - name: Install PlatformIO
-  run: pip install platformio
+      - name: Install PlatformIO
+        run: pip install platformio
 
-      - run: |
+      - name: Build firmware
+        run: |
           cd firmware/esp32-v4
           pio run
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: firmware
           path: firmware/esp32-v4/.pio/build/esp32dev/firmware.bin
